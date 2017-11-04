@@ -1002,3 +1002,1092 @@ elif msg.text in ["Auto like:on"]:
                 else:
                     cl.sendText(msg.to,"One  of weeds on the surface below the self- additional breath imageã€‚\n\n" + wait["message"])
             elif msg.text in ["CHANGE"]:
+                if wait["lang"] =="JP":
+                    wait["lang"] = "TW"
+                    cl.sendText(msg.to,"COUNTRY LANGUADE DURING A CHANGE")
+                else:
+                    wait["lang"] = "JP"
+                    cl.sendText(msg.to,". The language was made English")
+            elif msg.text in ["Gurl”]:
+                if msg.toType == 2:
+                    x = cl.getGroup(msg.to)
+                    if x.preventJoinByTicket == True:
+                        x.preventJoinByTicket = False
+                        cl.updateGroup(x)
+                    gurl = cl.reissueGroupTicket(msg.to)
+                    cl.sendText(msg.to,"line://ti/g/" + gurl)
+                else:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"DONE")
+                    else:
+                        cl.sendText(msg.to,"Bla blaa")
+            elif "gurl:" in msg.text:
+                if msg.toType == 2:
+                    gid = msg.text.replace("gurl:","")
+                    gurl = cl.reissueGroupTicket(gid)
+                    cl.sendText(msg.to,"line://ti/g/" + gurl)
+                else:
+                    cl.sendText(msg.to,"Url")
+            elif msg.text in ["Gurl"]:
+                if msg.toType == 2:
+                    x = ki.getGroup(msg.to)
+                    if x.preventJoinByTicket == True:
+                        x.preventJoinByTicket = False
+                        ki.updateGroup(x)
+                    gurl = ki.reissueGroupTicket(msg.to)
+                    ki.sendText(msg.to,"line://ti/g/" + gurl)
+                else:
+                    if wait["lang"] == "JP":
+                        cl.sendText(msg.to,"Can Not be used outside the group")
+                    else:
+                        cl.sendText(msg.to,"Not for use less than group")
+            elif msg.text in ["cb"]:
+                wait["wblack"] = True
+                cl.sendText(msg.to,"Please send the phone number of the person who adds it to the blacklist.")
+            elif msg.text in ["cbd"]:
+                wait["dblack"] = True
+                cl.sendText(msg.to,"Please send the phone number of the person who adds it to the blacklist.")
+            elif msg.text in ["cbc"]:
+                if wait["commentBlack"] == {}:
+                    cl.sendText(msg.to,"There isn't a person made a blacklistã€‚")
+                else:
+                    cl.sendText(msg.to,"Below is a blacklistã€‚")
+                    mc = ""
+                    for mi_d in wait["commentBlack"]:
+mc += "ãƒ»" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,mc)
+            elif msg.text in ["Clock:on"]:
+                if wait["clock"] == True:
+                    cl.sendText(msg.to,"It's on alreadyã€‚")
+                else:
+                    wait["clock"] = True
+                    now2 = datetime.now()
+                    nowT = datetime.strftime(now2,"(%H:%M)")
+                    profile = cl.getProfile()
+                    profile.displayName = wait["cName"] + nowT
+                    cl.updateProfile(profile)
+                    cl.sendText(msg.to,"It was turned on")
+            elif msg.text in ["Clock:off"]:
+                if wait["clock"] == False:
+                    cl.sendText(msg.to,"It's off already.ã€‚")
+                else:
+                    wait["clock"] = False
+                    cl.sendText(msg.to,"It was tuned offã€‚")
+            elif "Clock:" in msg.text:
+                n = msg.text.replace("Clock:","")
+                if len(n.decode("utf-8")) > 13:
+                    cl.sendText(msg.to,"Last name clockã€‚")
+                else:
+                    wait["cName"] = n
+                    cl.sendText(msg.to,"It was renewed\n\n" + n)
+            elif msg.text in ["Up clock"]:
+                if wait["clock"] == True:
+                    now2 = datetime.now()
+                    nowT = datetime.strftime(now2,"(%H:%M)")
+                    profile = cl.getProfile()
+                    profile.displayName = wait["cName"] + nowT
+                    cl.updateProfile(profile)
+                    cl.sendText(msg.to,"It was renewedã€‚")
+                else:
+                    cl.sendText(msg.to,"Please turn on a name clock.ã€‚")
+            elif "Fighter" in msg.text:
+                group = cl.getGroup(msg.to)
+                k = len(group.members)//100
+                for j in xrange(k+1):
+                    msg = Message(to=msg.to)
+                    txt = u''
+                    s=0
+                    d=[]
+                    for i in group.members[j*100 : (j+1)*100]:
+                        d.append({"S":str(s), "E" :str(s+8), "M":i.mid})
+                        s += 9
+                        txt += u'@Krampus\n'
+                    msg.text = txt
+                    msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
+                    cl.sendMessage(msg) 
+            elif "Pasukan" in msg.text:
+                  X = cl.getGroup(msg.to)                    
+                  X.preventJoinByTicket = False
+                  cl.updateGroup(X)
+                  invsend = 0 
+                  Ti = cl.reissueGroupTicket(msg.to)
+                  ki.acceptGroupInvitationByTicket(msg.to,Ti)
+                  kk.acceptGroupInvitationByTicket(msg.to,Ti)
+                  ks.acceptGroupInvitationByTicket(msg.to,Ti)
+                  kc.acceptGroupInvitationByTicket(msg.to,Ti)
+                  ka.acceptGroupInvitationByTicket(msg.to,Ti)
+                  G = cl.getGroup(msg.to)
+                  G.preventJoinByTicket = True
+                  cl.updateGroup(G)
+                  Ticket = cl.reissueGroupTicket(msg.to)
+            elif msg.text in ["K1 join"]:
+                  X = cl.getGroup(msg.to)                    
+                  X.preventJoinByTicket = False
+                  cl.updateGroup(X)
+                  invsend = 0 
+                  Ti = cl.reissueGroupTicket(msg.to)
+                  ki.acceptGroupInvitationByTicket(msg.to,Ti)                  
+                  G = ki.getGroup(msg.to)
+                  G.preventJoinByTicket = True
+                  ki.updateGroup(G)
+                  Ticket = ki.reissueGroupTicket(msg.to)
+
+            elif msg.text in ["K2 join"]:
+                  X = cl.getGroup(msg.to)                    
+                  X.preventJoinByTicket = False
+                  cl.updateGroup(X)
+                  invsend = 0 
+                  Ti = cl.reissueGroupTicket(msg.to)
+                  kk.acceptGroupInvitationByTicket(msg.to,Ti)           
+                  G = kk.getGroup(msg.to)
+                  G.preventJoinByTicket = True
+                  kk.updateGroup(G)
+                  Ticket = kk.reissueGroupTicket(msg.to)
+				  
+            elif msg.text in ["K3 join"]:
+                  X = cl.getGroup(msg.to)                    
+                  X.preventJoinByTicket = False
+                  cl.updateGroup(X)
+                  invsend = 0 
+                  Ti = cl.reissueGroupTicket(msg.to)
+                  ks.acceptGroupInvitationByTicket(msg.to,Ti)           
+                  G = ks.getGroup(msg.to)
+                  G.preventJoinByTicket = True
+                  ks.updateGroup(G)
+                  Ticket = ks.reissueGroupTicket(msg.to)                           
+
+            elif msg.text in ["Keluar"]:
+                if msg.toType == 2:
+                   X = cl.getGroup(msg.to)
+                try:
+					ki.leaveGroup(msg.to)
+					kk.leaveGroup(msg.to)
+					ks.leaveGroup(msg.to)
+					kc.leaveGroup(msg.to)
+					ka.leaveGroup(msg.to)
+                except:
+                     pass            
+ 
+ elif "NK:" in msg.text:
+                if msg.toType == 2:
+                    print "ok"
+                    _name = msg.text.replace("NK:","")
+                    gs = ki.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ki.sendText(msg.to,"Not found.")
+                    else:
+                        for target in targets:
+                            try:
+                                KAC = [ki,kk,ks,kc,ka]
+                                kicker = random.choice(KAC)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                ki.sendText(msg.to,"ERROR")
+#-----------------------------------------------------------                          
+            elif msg.text in [“Creator”]
+                if msg.form_ in admin:     
+                   msg.contentType = 13     
+                   msg.contentMetadata = {‘mid’: ‘MID KAMU’}       
+                   cl.sendMessage (msg)
+                   cl.sendText(msg.to,”Itu Creator Saya”)
+#-----------------------------------------------------------            
+            elif "Kick" in msg.text:
+                if msg.contentMetadata is not None:
+                    targets = []
+                    key = eval(msg.contentMetadata["MENTION"])
+                    key["MENTIONEES"][0]["M"]
+                    for x in key["MENTIONEES"]:
+                        targets.append(x["M"])
+                    for target in targets:
+                        try:
+                            cl.kickoutFromGroup(msg.to,[target])
+                        except:
+                           ki.kickoutFromGroup(msg.to,[target])
+                    else:
+                        pass
+            elif "K1 fuck" in msg.text:
+				OWN = "uc77fd25b59f6e563d84f1334f3fed10b"
+				if msg.from_ in OWN:
+					pass
+				else:
+					nk0 = msg.text.replace("K1 fuck","")
+					nk1 = nk0.lstrip()
+					nk2 = nk1.replace("@","")
+					nk3 = nk2.rstrip()
+					_name = nk3
+					gs = ki.getGroup(msg.to)
+					targets = []
+					for h in gs.members:
+						if _name in h.displayName:
+							targets.append(h.mid)
+					if targets == []:
+sendMessage(msg.to,"User does not exist")
+						pass
+					else:
+						for target in targets:
+							try:
+								if msg.from_ not in target:
+									ki.kickoutFromGroup(msg.to, [target])							   
+							except:
+									ki.kickoutFromGroup(msg.to, [target])							   
+									pass
+            elif "K2 fuck" in msg.text:
+				OWN = " uc77fd25b59f6e563d84f1334f3fed10b"
+				if msg.from_ in OWN:
+					pass
+				else:
+					nk0 = msg.text.replace("K2 fuck","")
+					nk1 = nk0.lstrip()
+					nk2 = nk1.replace("@","")
+					nk3 = nk2.rstrip()
+					_name = nk3
+					gs = ki.getGroup(msg.to)
+					targets = []
+					for h in gs.members:
+						if _name in h.displayName:
+							targets.append(h.mid)
+					if targets == []:
+						sendMessage(msg.to,"User does not exist")
+						pass
+					else:
+						for target in targets:
+							try:
+								if msg.from_ not in target:
+									kk.kickoutFromGroup(msg.to, [target])							   
+							except:
+									kk.kickoutFromGroup(msg.to, [target])							   
+									pass
+
+            elif "K3 fuck" in msg.text:
+				OWN = " uc77fd25b59f6e563d84f1334f3fed10b"
+				if msg.from_ in OWN:
+					pass
+				else:
+					nk0 = msg.text.replace("K3 fuck","")
+					nk1 = nk0.lstrip()
+					nk2 = nk1.replace("@","")
+					nk3 = nk2.rstrip()
+					_name = nk3
+					gs = ki.getGroup(msg.to)
+					targets = []
+					for h in gs.members:
+						if _name in h.displayName:
+							targets.append(h.mid)
+					if targets == []:
+						sendMessage(msg.to,"User does not exist")
+						pass
+					else:
+						for target in targets:
+							try:
+								if msg.from_ not in target:
+									ks.kickoutFromGroup(msg.to, [target])							   
+							except:
+									ks.kickoutFromGroup(msg.to, [target])							   
+									pass									
+            elif "Ban " in msg.text:
+                if msg.toType == 2:
+                    if msg.from_ in admin:                                        
+                       ban0 = msg.text.replace("Ban ","")
+                       ban1 = ban0.lstrip()
+                       ban2 = ban1.replace("@","")
+                       ban3 = ban2.rstrip()
+                       _name = ban3
+                       gs = cl.getGroup(msg.to)
+                       targets = []
+                       for s in gs.members:
+                           if _name in s.displayName:
+                              targets.append(s.mid)
+                       if targets == []:
+                           cl.sendText(msg.to,"Sukses bro")
+                           pass
+                       else:
+                            for target in targets:
+                                try:
+                                    wait["blacklist"][target] = True
+                                    f=codecs.open('st2__b.json','w','utf-8')
+                                    json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                    cl.sendText(msg.to,”Berhasil")
+                                except:
+                                    cl.sendText(msg.to,"Behasil")
+#-----------------------------------------------------------
+            elif "Mid @" in msg.text:
+                _name = msg.text.replace("Mid @","")
+                _nametarget = _name.rstrip(' ')
+                gs = cl.getGroup(msg.to)
+                for g in gs.members:
+                    if _nametarget == g.displayName:
+                        cl.sendText(msg.to, g.mid)
+                    else:
+                        pass
+#-----------------------------------------------------------
+            elif "Unban " in msg.text:
+               if msg.toType == 2:
+                  if msg.from_ in admin:                                        
+                       unb0 = msg.text.replace("Unban ","")
+                       unb1 = unb0.lstrip()
+                       unb2 = unb1.replace("@","")
+                       unb3 = unb2.rstrip()
+                       x_name = unb3
+                       gs = cl.getGroup(msg.to)
+                       targets = []
+                       for s in gs.members:
+                           if x_name in s.displayName:
+                              targets.append(s.mid)
+                       if targets == []:
+                           cl.sendText(msg.to,"Berhasil")
+                           pass
+                       else:
+                            for target in targets:
+                                try:
+                                    del wait["blacklist"][target]
+                                    f=codecs.open('st2__b.json','w','utf-8')
+                                    json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                    cl.sendText(msg.to,"Berhasil")
+                                except:
+                                    cl.sendText(msg.to,"Berhasil")
+#-----------------------------------------------------------
+            elif "Protect:on" == msg.text:
+				if msg.to in protection:
+					cl.sendText(msg.to,"Protected")
+				else:
+					wait["pnharfbot"][msg.to] = cl.getGroup(msg.to).name
+					f=codecs.open('pnharfbot.json','w','utf-8')
+					json.dump(wait["pnharfbot"], f, sort_keys=True, indent=4,ensure_ascii=False)
+					protection.append(msg.to)
+					cl.sendText(msg.to,"Already")
+            elif "Protect:off" == msg.text:
+				try:
+					if msg.from_ in Administrator:
+						protection.remove(msg.to)
+						cl.sendText(msg.to,"Protect off")
+					else:
+						cl.sendText(msg.to,"Already off")
+				except:
+					pass
+            elif "Namelock:on" in msg.text:
+                if msg.to in wait['pname']:
+                    cl.sendText(msg.to,"Already on")
+                else:
+                    cl.sendText(msg.to,"Turn on")
+                    wait['pname'][msg.to] = True
+                    wait['pro_name'][msg.to] = cl.getGroup(msg.to).name
+            elif "Namelock:off" in msg.text:
+                if msg.to in wait['pname']:
+                    cl.sendText(msg.to,"Already off")
+                    del wait['pname'][msg.to]
+                else:
+                    cl.sendText(msg.to,"Turn off")
+					
+            elif "Blockinvite:on" == msg.text:
+				gid = msg.to
+				autocancel[gid] = "poni"
+				cl.sendText(msg.to,"Already on")
+            elif "Blockinvite:off" == msg.text:
+				try:
+					del autocancel[msg.to]
+					cl.sendText(msg.to,"Turn on")
+				except:
+					pass                                 
+#-----------------------------------------------------------
+            elif "#END" in msg.text:
+                try:
+                    import sys
+                    sys.exit()
+                except:
+                    pass
+#-----------------------------------------------------------
+            elif "Spam @" in msg.text:
+                _name = msg.text.replace("Spam @","")
+                _nametarget = _name.rstrip(' ')
+                gs = cl.getGroup(msg.to)
+                for g in gs.members:
+                    if _nametarget == g.displayName:
+                       cl.sendText(msg.to,"OTW SPAM BOSSQUE")
+                       ki.sendText(g.mid,"ini spam ty")  
+                       kk.sendText(g.mid,"ini spam ty")  
+                       ks.sendText(g.mid,"ini spam ty")
+                       kc.sendText(g.mid,"ini spam ty")
+                       ka.sendText(g.mid,"ini spam ty")
+                       cl.sendText(g.mid,"ini spam ty")
+                       ki.sendText(g.mid,"ini spam tu")
+                       kk.sendText(g.mid,"ini spam ty")
+                       ks.sendText(g.mid,"ini spam ty")
+                       kc.sendText(g.mid,"ini spam ty")  
+                       ka.sendText(g.mid,"ini spam ty")  
+                       cl.sendText(g.mid,"ini spam ty")
+                       ki.sendText(g.mid,"ini spam ty")
+                       kk.sendText(g.mid,"ini spam ty")
+                       ks.sendText(g.mid,"ini spam ty")
+                       kc.sendText(g.mid,”ini spam ty")
+                       ka.sendText(g.mid,"ini spam ty")
+                       cl.sendText(g.mid,"ini spam ty")
+                       ki.sendText(g.mid,"ini spam ty")  
+                       kk.sendText(g.mid,"ini spam ty")  
+                       ks.sendText(g.mid,"ini spam ty")
+                       kc.sendText(g.mid,"ini spam ty")
+                       ka.sendText(g.mid,"ini spam ty")
+                       cl.sendText(g.mid,"ini spam ty")
+                       ki.sendText(g.mid,"ini spam ty")
+                       kk.sendText(g.mid,"ini spam ty")
+                       ks.sendText(g.mid,"ini spam ty")
+                       kc.sendText(g.mid,"ini spam ty")  
+                       ka.sendText(g.mid,"ini spam ty")  
+                       cl.sendText(g.mid,"ini spam ty")
+                       ki.sendText(g.mid,"ini spam ty")
+                       kk.sendText(g.mid,"ini spam ty")
+                       ks.sendText(g.mid,"ini spam ty")
+                       kc.sendText(g.mid,"Ciee kena spam")
+                       ka.sendText(g.mid,"Makanya cari pacar")
+                       ks.sendText(g.mid,"Biar kaga di spam sama bosque")
+                       cl.sendText(msg.to, "Kabur")
+                       print "Spam done bosque" 
+#-----------------------------------------------------------
+            elif msg.text in ["PING","Ping","ping"]:
+                ki.sendText(msg.to,"PONG")
+                kk.sendText(msg.to,"PONG")
+                ks.sendText(msg.to,"PONG")
+#----------------------------------------------------------
+            elif msg.text in ["Respon","respon","responsename"]:
+                cl.sendText(msg.to,"MY BOTS ")
+                ki.sendText(msg.to,"TEAM CYBER 1")
+                kk.sendText(msg.to,"TEAM CYBER 2")
+                ks.sendText(msg.to,"TEAM CYBER 3")	
+                kc.sendText(msg.to,"TEAM CYBER 4")
+                ka.sendText(msg.to,"TEAM CYBER 5")
+#----------------------------------------------------------
+            elif msg.text == "POIN1":
+              if msg.from_ in admin:
+                cl.sendText(msg.to, "CEK SIDER")
+                try:
+                  del wait2['readPoint'][msg.to]
+                  del wait2['readMember'][msg.to]
+                except:
+	            pass
+                now2 = datetime.now()
+                wait2['readPoint'][msg.to] = msg.id
+                wait2['readMember'][msg.to] = ""
+                wait2['setTime'][msg.to] = datetime.strftime(now2,"%H:%M")
+                wait2['ROM'][msg.to] = {}
+                print wait2
+            elif msg.text == "POIN2":
+              if msg.from_ in admin:
+		  if msg.to in wait2['readPoint']:
+	            if wait2["ROM"][msg.to].items() == []:
+	              chiya = ""
+	            else:
+	              chiya = ""
+	              for rom in wait2["ROM"][msg.to].items():
+	                print rom
+	                chiya += rom[1] + "\n"
+
+	            cl.sendText(msg.to, " %s\n\n\nPeople who have ignored reads\n(ï½€ãƒ»Ï‰ãƒ»Â´)\n%s\n\nThese anu anu uesrs have seen at the lastseen point(ï½€ãƒ»Ï‰ãƒ»Â´)\n[%s]"  % (wait2['readMember'][msg.to],chiya,setTime[msg.to]))
+	          else:
+	            cl.sendText(msg.to, "Sider ga bisa di read cek setpoint dulu bego tinggal ketik\nSetlastpoint\nkalo mau liat sider ketik\nViewlastseen")
+#-----------------------------------------------------------speed
+            elif msg.text in ["Ban"]:
+                wait["wblacklist"] = True
+                cl.sendText(msg.to,"Æ¤Ô¼Ð„Æ›Æ§Ð„ Æ§Ð„ÆÆŠ Æ¬HÐ„ Æ›Æ‡Æ‡Æ Æ²ÆÆ¬ Æ¦Ð„Æ“Æ–Æ§Æ¬Ð„Æ¦Ð„ÆŠ ÆœÆ–Æ¬H Æ› ÆÔ¼Æ›Æ‡Æ˜Ô¼Æ–Æ§Æ¬ã€‚")
+            elif msg.text in ["Unban"]:
+                wait["dblacklist"] = True
+                cl.sendText(msg.to,"Æ¤Ô¼Ð„Æ›Æ§Ð„ Æ§Ð„ÆÆŠ Æ¬HÐ„ Æ›Æ‡Æ‡Æ Æ²ÆÆ¬ Æ¦Ð„Æ“Æ–Æ§Æ¬Ð„Æ¦Ð„ÆŠ ÆœÆ–Æ¬H Æ› ÆÔ¼Æ›Æ‡Æ˜Ô¼Æ–Æ§Æ¬ã€‚")
+            elif msg.text in ["Banlist"]:
+                if wait["blacklist"] == {}:
+                    cl.sendText(msg.to,"Æ¬HÐ„Æ¦Ð„ Æ–Æ§Æ'Æ¬ Æ› Æ¤Ð„Æ¦Æ§Æ Æ MÆ›ÆŠÐ„ Æ› ÆÔ¼Æ›Æ‡Æ˜Ô¼Æ–Æ§Æ¬.ã€‚")
+                else:
+                    cl.sendText(msg.to,"ÆÐ„Ô¼Æ Æœ Æ–Æ§ Æ› ÆÔ¼Æ›Æ‡Æ˜Ô¼Æ–Æ§Æ¬ã€‚")
+                    mc = ""
+                    for mi_d in wait["blacklist"]:
+                        mc += "ãƒ»" +cl.getContact(mi_d).displayName + "\n"
+                    cl.sendText(msg.to,mc)
+            elif msg.text in ["Blist"]:
+                if msg.toType == 2:
+                    group = cl.getGroup(msg.to)
+                    gMembMids = [contact.mid for contact in group.members]
+                    matched_list = []
+                    for tag in wait["blacklist"]:
+                        matched_list+=filter(lambda str: str == tag, gMembMids)
+                    cocoa = ""
+                    for mm in matched_list:
+                        cocoa += "ãƒ»" +cl.getContact(mm).displayName + "\n"
+                    cl.sendText(msg.to,cocoa + "But it's a blacklist.ã€‚")
+            elif msg.text in ["Kill ban"]:
+                if msg.toType == 2:
+                    group = ki.getGroup(msg.to)
+                    gMembMids = [contact.mid for contact in group.members]
+                    matched_list = []
+                    for tag in wait["blacklist"]:
+                        matched_list+=filter(lambda str: str == tag, gMembMids)
+                    if matched_list == []:
+                        ki.sendText(msg.to,"There wasn't a blacklist userã€‚")
+                        return
+                    for jj in matched_list:
+                        try:
+                            klist=[cl,ki,kk,ks,kc,ka]
+                            kicker=random.choice(klist)
+                            kicker.kickoutFromGroup(msg.to,[jj])
+                            print (msg.to,[jj])
+                        except:
+                            pass							
+            elif msg.text in ["single"]:
+                if msg.toType == 2:
+                    group = cl.getGroup(msg.to)
+                    gMembMids = [contact.mid for contact in group.invitee]
+                    for _mid in gMembMids:
+                        cl.cancelGroupInvitation(msg.to,[_mid])
+                    cl.sendText(msg.to,"I have feigned and have canceled itã€‚")
+            elif "random:" in msg.text:
+                if msg.toType == 2:
+                    strnum = msg.text.replace("random:","")
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
+                    try:
+                        num = int(strnum)
+                        group = cl.getGroup(msg.to)
+                        for var in range(0,num):
+                            name = "".join([random.choice(source_str) for x in xrange(10)])
+                            time.sleep(0.01)
+                            group.name = name
+                            cl.updateGroup(group)
+                    except:
+                        cl.sendText(msg.to,"Ð„Æ¦Æ¦Æ Æ¦")
+            elif "Album making" in msg.text:
+                try:
+                    albumtags = msg.text.replace("Album making","")
+                    gid = albumtags[:33]
+                    name = albumtags.replace(albumtags[:34],"")
+                    cl.createAlbum(gid,name)
+                    cl.sendText(msg.to,name + "An album was madeã€‚")
+                except:
+                    cl.sendText(msg.to,"Ð„Æ¦Æ¦Æ Æ¦")
+            elif "fakecâ†’" in msg.text:
+                try:
+                    source_str = 'abcdefghijklmnopqrstuvwxyz1234567890@:;./_][!&%$#)(=~^|'
+                    name = "".join([random.choice(source_str) for x in xrange(10)])
+                    amid = msg.text.replace("fakecâ†’","")
+                    cl.sendText(msg.to,str(cl.channel.createAlbumF(msg.to,name,amid)))
+                except Exception as e:
+                    try:
+                        cl.sendText(msg.to,str(e))
+                    except:
+                        pass                
+#-----------------------------------------------
+            elif "Say " in msg.text:
+                string = msg.text.replace("Say ","")
+                if len(string.decode('utf-8')) <= 50:
+                    ki.sendText(msg.to," " + string + " ")
+                    kk.sendText(msg.to," " + string + " ")
+                    ks.sendText(msg.to," " + string + " ")
+                    kc.sendText(msg.to," " + string + " ")
+                    ka.sendText(msg.to," " + string + " ")
+#-----------------------------------------------
+            elif "#test" in msg.text:
+                ks.sendText(msg.to,"ok")
+#-----------------------------------------------
+            elif "à¸ªà¸›à¸µà¸”" in msg.text:
+                start = time.time()
+                cl.sendText(msg.to, "Æ›Æ‡Æ‡Ð„Æ§Æ§ Æ§Æ¤Ð„Ð„ÆŠ ÆœÆ›Æ–Æ¬Æ–ÆÆ“")
+                elapsed_time = time.time() - start
+                cl.sendText(msg.to, "%sseconds" % (elapsed_time))    
+#-----------------------------------------------             
+        if op.type == 19:
+            try:
+                if op.param3 in mid:
+                    if op.param2 in Amid:
+                        G = ki.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ki.updateGroup(G)
+                        Ticket = ki.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                    else:
+                        G = ki.getGroup(op.param1)                        
+                        
+                        ki.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ki.updateGroup(G)
+                        Ticket = ki.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki.updateGroup(G)
+                        wait["blacklist"][op.param2] = False
+
+                elif op.param3 in op.param3:
+                    if op.param1 in protection:
+                        OWN = "u2144f4eca089e5888899ad5d0551c085","u406133ad4d3fbe50a2f4d51ea081d050","ua51ba06b0dd18c0bfe2cc6caa3458202","u34a9af3a18784280147fc413a68a77fd"
+                    if op.param2 in OWN:
+                        kicker1 = [cl,ki,kk,ks,kc,ka,km,kn,ko]
+                        G = random.choice(kicker1).getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        random.choice(kicker1).updateGroup(G)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        random.choice(kicker1).updateGroup(G)
+                    else:
+                        G = random.choice(kicker1).getGroup(op.param1)
+
+                        random.choice(kicker1).kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        random.choice(kicker1).updateGroup(G)
+                        Ticket = random.choice(kicker1).reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        random.choice(kicker1).updateGroup(G)
+
+                        wait["blacklist"][op.param2] = True
+                        f=codecs.open('st2__b.json','w','utf-8')
+                        json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                        
+                elif op.param3 in Amid:
+                    if op.param2 in mid:
+                        G = cl.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                    else:
+                        G = cl.getGroup(op.param1)
+
+                        
+                        cl.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                        wait["blacklist"][op.param2] = False
+                        f=codecs.open('st2__b.json','w','utf-8')
+                        json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)            
+            except:
+                pass
+
+        if op.type == 19:
+            try:
+                if op.param3 in Amid:
+                    if op.param2 in mid:
+                        G = cl.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                    else:
+                        G = cl.getGroup(op.param1)
+
+                        
+                        cl.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+
+
+                elif op.param3 in mid:
+                    if op.param2 in Amid:
+                        G = ki.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ki.updateGroup(G)
+                        Ticket = ki.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki.updateGroup(G)
+                    else:
+                        G = ki.getGroup(op.param1)
+
+                        
+                        ki.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ki.updateGroup(G)
+                        Ticket = ki.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ki.updateGroup(G)
+                        wait["blacklist"][op.param2] = False
+                        f=codecs.open('st2__b.json','w','utf-8')
+                        json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)            
+            except:
+                pass
+                
+        if op.type == 19:
+            try:
+                if op.param3 in kimid:
+                    if op.param2 in ki2mid:
+                        G = ks.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ks.updateGroup(G)
+                        Ticket = ks.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ks.updateGroup(G)
+                    else:
+                        G = ks.getGroup(op.param1)
+
+                        
+                        ks.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ks.updateGroup(G)
+                        Ticket = ks.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ks.updateGroup(G)
+
+                        
+                elif op.param3 in Amid:
+                    if op.param2 in kimid:
+                        G = kk.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        kk.updateGroup(G)
+                        Ticket = kk.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        kk.updateGroup(G)
+                    else:
+                        G = kk.getGroup(op.param1)
+
+                        kk.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        kk.updateGroup(G)
+                        Ticket = kk.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        kk.updateGroup(G)
+                        wait["blacklist"][op.param2] = False
+                        f=codecs.open('st2__b.json','w','utf-8')
+                        json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)            
+            except:
+                pass
+                
+        if op.type == 19:
+            try:
+                if op.param3 in ki2mid:
+                    if op.param2 in kimid:
+                        if op.param4 in Cmid:
+                            if op.param5 in Emid:
+                                G = kk.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        kk.updateGroup(G)
+                        Ticket = kk.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        kk.updateGroup(G)
+                    else:
+                        G = kk.getGroup(op.param1)
+
+                        
+                        kk.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        kk.updateGroup(G)
+                        Ticket = kk.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        kk.updateGroup(G)
+
+
+                elif op.param3 in kimid:
+                    if op.param2 in ki2mid:
+                        G = ks.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ks.updateGroup(G)
+                        Ticket = ks.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ks.updateGroup(G)
+                    else:
+                        G = ks.getGroup(op.param1)
+
+                        
+                        ks.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ks.updateGroup(G)
+                        Ticket = ks.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ks.updateGroup(G)
+                        wait["blacklist"][op.param2] = False
+                        f=codecs.open('st2__b.json','w','utf-8')
+                        json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)            
+            except:
+                pass
+                
+        if op.type == 19:
+            try:
+                if op.param3 in mid:
+                    if op.param2 in ki2mid:
+                        G = ks.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        ks.updateGroup(G)
+                        Ticket = ks.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ks.updateGroup(G)
+                    else:
+                        G = ks.getGroup(op.param1)
+
+                        
+                        ks.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        ks.updateGroup(G)
+                        Ticket = ks.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        ks.updateGroup(G)
+
+                        wait["blacklist"][op.param2] = False
+                        f=codecs.open('st2__b.json','w','utf-8')
+                        json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                        
+                elif op.param3 in ki2mid:
+                    if op.param2 in mid:
+                        G = cl.getGroup(op.param1)
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                    else:
+                        G = cl.getGroup(op.param1)
+
+                        cl.kickoutFromGroup(op.param1,[op.param2])
+
+                        G.preventJoinByTicket = False
+                        cl.updateGroup(G)
+                        Ticket = cl.reissueGroupTicket(op.param1)
+                        cl.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ki.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kk.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ks.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        kc.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        ka.acceptGroupInvitationByTicket(op.param1,Ticket)
+                        G.preventJoinByTicket = True
+                        cl.updateGroup(G)
+                        wait["blacklist"][op.param2] = False
+                        f=codecs.open('st2__b.json','w','utf-8')
+                        json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)            
+            except:
+                pass
+             
+        if op.param3 == "1":
+            if op.param1 in protectname:
+                group = cl.getGroup(op.param1)
+                try:
+					group.name = wait["pro_name"][op.param1]
+					cl.updateGroup(group)
+					cl.sendText(op.param1, "Groupname protect now")
+					wait["blacklist"][op.param2] = True
+					f=codecs.open('st2__b.json','w','utf-8')
+					json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                except Exception as e:
+                    print e
+                    pass
+                    
+        if op.param1 in autocancel:
+			OWN = "ua7fc5964d31f45ac75128fc2b8deb842","u406133ad4d3fbe50a2f4d51ea081d050","ua51ba06b0dd18c0bfe2cc6caa3458202","uc7f32bb28dc009916d40af87c9910ddc"
+			if op.param2 in OWN:
+				pass
+			else:
+				Inviter = op.param3.replace(" ",',')
+				InviterX = Inviter.split(",")
+				contact = cl.getContact(op.param2)
+				cl.cancelGroupInvitation(op.param1,InviterX)
+				ki.cancelGroupInvitation(op.param1,InviterX)
+				kk.cancelGroupInvitation(op.param1,InviterX)
+				ks.cancelGroupInvitation(op.param1,InviterX)
+				kc.cancelGroupInvitation(op.param1,InviterX)
+				ka.cancelGroupInvitation(op.param1,InviterX)
+				cl.kickoutFromGroup(op.param1,[op.param2])
+				ki.kickoutFromGroup(op.param1,[op.param2])
+				kk.kickoutFromGroup(op.param1,[op.param2])
+				ks.kickoutFromGroup(op.param1,[op.param2])
+				kc.kickoutFromGroup(op.param1,[op.param2])
+				ka.kickoutFromGroup(op.param1,[op.param2])
+				wait["blacklist"][op.param2] = True
+				f=codecs.open('st2__b.json','w','utf-8')
+				json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+#------------------------------------------------------------------------------------
+        if op.type == 32:
+			OWN = "ua7fc5964d31f45ac75128fc2b8deb842","u406133ad4d3fbe50a2f4d51ea081d050","ua51ba06b0dd18c0bfe2cc6caa3458202","uc7f32bb28dc009916d40af87c9910ddc"
+			if op.param2 in OWN:
+				pass
+			else:
+				Inviter = op.param3.replace(" ",',')
+				InviterX = Inviter.split(",")
+				contact = cl.getContact(op.param2)
+				ki.kickoutFromGroup(op.param1,[op.param2])
+				kk.kickoutFromGroup(op.param1,[op.param2])
+				ks.kickoutFromGroup(op.param1,[op.param2])
+				kc.kickoutFromGroup(op.param1,[op.param2])
+				ka.kickoutFromGroup(op.param1,[op.param2])
+				wait["blacklist"][op.param2] = True
+				f=codecs.open('st2__b.json','w','utf-8')
+				json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+#------------------------------------------------------------------------------------
+        if op.type == 55:
+            try:
+                if op.param1 in wait2['readPoint']:
+                    Name = cl.getContact(op.param2).displayName
+                    if Name in wait2['readMember'][op.param1]:
+                        pass
+                    else:
+                        wait2['readMember'][op.param1] += "\nâ˜‘" + Name
+                        wait2['ROM'][op.param1][op.param2] = "â˜‘" + Name
+                else:
+                    cl.sendText
+            except:
+                  pass
+                  
+#-----------------------------------------------------------
+        if op.type == 59:
+            print op
+
+
+    except Exception as error:
+        print error
+
+
+def autoSta():
+    count = 1
+    while True:
+        try:
+           for posts in cl.activity(1)["result"]["posts"]:
+             if posts["postInfo"]["liked"] is False:
+                if wait["likeOn"] == True:
+                   cl.like(posts["userInfo"]["writerMid"], posts["postInfo"]["postId"], 1001)
+                   if wait["commentOn"] == True:
+                      if posts["userInfo"]["writerMid"] in wait["commentBlack"]:
+                         pass
+                      else:
+                          cl.comment(posts["userInfo"]["writerMid"],posts["postInfo"]["postId"],wait["comment"])
+        except:
+            count += 1
+            if(count == 50):
+                sys.exit(0)
+            else:
+                pass
+thread1 = threading.Thread(target=autoSta)
+thread1.daemon = True
+thread1.start()
+def a2():
+    now2 = datetime.now()
+    nowT = datetime.strftime(now2,"%M")
+    if nowT[14:] in ["10","20","30","40","50","00"]:
+        return False
+    else:
+        return True
+
+def nameUpdate():
+    while True:
+        try:
+        #while a2():
+            #pass
+            if wait["clock"] == True:
+                now2 = datetime.now()
+                nowT = datetime.strftime(now2,"(%H:%M)")
+                profile = cl.getProfile()
+                profile.displayName = wait["cName"] + nowT
+                cl.updateProfile(profile)
+            time.sleep(600)
+        except:
+            pass
+#----------------------------------------
+
+#-------------------------------
+thread2 = threading.Thread(target=nameUpdate)
+thread2.daemon = True
+thread2.start()
+
+while True:
+    try:
+        Ops = cl.fetchOps(cl.Poll.rev, 5)
+    except EOFError:
+        raise Exception("It might be wrong revision\n" + str(cl.Poll.rev))
+
+    for Op in Ops:
+        if (Op.type != OpType.END_OF_OPERATION):
+            cl.Poll.rev = max(cl.Poll.rev, Op.revision)
+            bot(Op)
+
