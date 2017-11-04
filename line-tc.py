@@ -1,34 +1,34 @@
 # -*- coding: utf-8 -*-
 
-Import LINETC.LINE
-from LINETC.lib.curve.ttypes import *
+Import LINETCR.LINE
+from LINETCR.lib.curve.ttypes import *
 from io import StringIO
 from datetime import datetime
 import time,random,sys,json,codecs,threading,glob,sys
 import re,string,os
 import os.path,sys,urllib,shutil,subprocess
 
-cl = LINETC.LINE()
+cl = LINETCR.LINE()
 cl.login(qr=True)
 cl.loginResult()
 
-ki = LINETC.LINE()
+ki = LINETCR.LINE()
 ki.login(qr=True)
 ki.loginResult()
 
-ka = LINETC.LINE()
+ka = LINETCR.LINE()
 ka.login(qr=True)
 ka.loginResult()
 
-ks = LINETC.LINE
+ks = LINETCR.LINE
 ks.login(qr=True)
 ks.loginResult()
 
-kc = LINETC.LINE
+kc = LINETCR.LINE
 kc.login(qr=True)
 kc.loginResult()
 
-kk = LINETC.LINE
+kk = LINETCR.LINE
 kk.login(qr=True)
 kk.loginResult()
 
