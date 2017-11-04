@@ -1,2 +1,4 @@
-# https-github.com-ebisubii-LINE-TC
-https://github.com/ebisubii/LINE-TC
+LINE TC [Team Cyber]
+pip2 install rsa
+pip2 install thrift==0.9.3
+pip2 install requests
